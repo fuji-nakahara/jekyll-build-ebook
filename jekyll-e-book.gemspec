@@ -1,11 +1,11 @@
 
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'jekyll/e/book/version'
+require 'jekyll-e-book/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'jekyll-e-book'
-  spec.version       = Jekyll::E::Book::VERSION
+  spec.version       = JekyllEBook::VERSION
   spec.authors       = ['Fuji Nakahara']
   spec.email         = ['fujinakahara2032@gmail.com']
 

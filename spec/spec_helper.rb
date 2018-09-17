@@ -1,5 +1,5 @@
 require 'bundler/setup'
-require 'jekyll/e/book'
+require 'jekyll-e-book'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
