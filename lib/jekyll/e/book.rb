@@ -1,4 +1,4 @@
-require "jekyll/e/book/version"
+require 'jekyll/e/book/version'
 
 module Jekyll
   module E
