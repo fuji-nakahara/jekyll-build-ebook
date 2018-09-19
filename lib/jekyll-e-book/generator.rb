@@ -30,7 +30,7 @@ module JekyllEBook
           post.data['layout'] = original_layout
 
           book
-            .add_item("#{post['title']}.xhtml")
+            .add_item("#{post['slug']}.xhtml")
             .add_content(StringIO.new(doc.to_xhtml))
             .toc_text(post['title'])
         end
