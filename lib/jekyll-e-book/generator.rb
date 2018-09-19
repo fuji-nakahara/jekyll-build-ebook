@@ -5,10 +5,12 @@ module JekyllEBook
     safe true
     priority :lowest
 
-    def generate(site, book: GEPUB::Book.new)
+    def generate(site, book: GEPUB::Book.new, logger: Jekyll.logger)
       config = Config.new(site.config)
 
       return if config.skip_build?
+
+      logger.info 'jekyll-e-book:', "Generating e-book"
 
       book.identifier                 = config.identifier
       book.title                      = config.title
