@@ -1,28 +1,41 @@
 # jekyll-e-book
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/jekyll-e-book`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Jekyll plugin to generate an EPUB file including your Jekyll posts.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your site's Gemfile:
 
 ```ruby
 gem 'jekyll-e-book'
 ```
 
-And then execute:
+And then add the following to your site's `_config.yml`:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install jekyll-e-book
+```yaml
+plugins:
+  - jekyll-e-book
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+This plugin will automatically generate an EPUB file at `_ebook/#{file_name}.epub`.
+
+You can also edit the build settings and the EPUB metadata in `_config.yml`:
+
+```yaml
+ebook:
+  # Build settings
+  build: true
+  layout: ebook 
+  destination: _ebook
+  file_name: My book
+  # EPUB metadata
+  identifier: http://example.com
+  title: Your book title
+  language: ja_JP
+  creator: Your name
+```
 
 ## Development
 
@@ -32,7 +45,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/jekyll-e-book. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/fuji-nakahara/jekyll-e-book. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
