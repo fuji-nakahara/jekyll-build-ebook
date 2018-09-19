@@ -18,7 +18,7 @@ module JekyllEBook
       book.page_progression_direction = config.page_progression_direction
 
       book.ordered do
-        site.posts.each do |post|
+        site.posts.docs.each do |post|
           original_layout     = post.data['layout']
           post.data['layout'] = config.layout || site.layouts.key?('ebook') ? 'ebook' : 'none'
 
