@@ -9,3 +9,7 @@
 
 # rspec failure tracking
 .rspec_status
+
+# fixtures output
+/spec/dest/
+/spec/ebook/

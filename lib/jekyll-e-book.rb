@@ -1,5 +1,8 @@
-require_relative 'jekyll-e-book/version'
+require 'jekyll'
 
-module JekyllEBook
-  # Your code goes here...
-end
+require 'gepub'
+require 'nokogiri'
+
+require_relative 'jekyll-e-book/config'
+require_relative 'jekyll-e-book/generator'
+require_relative 'jekyll-e-book/version'
