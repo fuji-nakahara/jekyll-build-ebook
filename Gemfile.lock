@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jekyll-e-book (0.1.0)
+    jekyll-e-book (0.1.1)
       gepub (~> 0.7)
       jekyll (~> 3.5)
       nokogiri (~> 1.0)
