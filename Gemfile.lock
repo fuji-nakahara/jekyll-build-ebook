@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jekyll-e-book (0.1.1)
+    jekyll-build-ebook (0.1.0)
       gepub (~> 0.7)
       jekyll (~> 3.5)
       nokogiri (~> 1.0)
@@ -107,7 +107,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.16)
-  jekyll-e-book!
+  jekyll-build-ebook!
   meowcop
   rake (~> 10.0)
   rspec (~> 3.0)

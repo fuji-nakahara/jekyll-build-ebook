@@ -1,35 +1,34 @@
-# jekyll-e-book
+# jekyll-build-ebook
 
-Jekyll plugin to generate an EPUB file including your Jekyll posts.
+Jekyll plugin that adds a command to generate an ebook including your posts.
 
 ## Installation
 
 Add this line to your site's Gemfile:
 
 ```ruby
-gem 'jekyll-e-book'
+gem 'jekyll-build-ebook'
 ```
 
 And then add the following to your site's `_config.yml`:
 
 ```yaml
 plugins:
-  - jekyll-e-book
+  - jekyll-build-ebook
 ```
 
 ## Usage
 
-This plugin will automatically generate an EPUB file at `_ebook/#{file_name}.epub`.
+This plugin will automatically generate an EPUB file at `_ebook/YOUR_SITE_TITLE.epub`.
 
 You can also edit the build settings and the EPUB metadata in `_config.yml`:
 
 ```yaml
 ebook:
   # Build settings
-  build: true
-  layout: ebook 
+  layout: ebook
   destination: _ebook
-  file_name: My book
+  file_name: your-book-title
   # EPUB metadata
   identifier: http://example.com
   title: Your book title
@@ -45,7 +44,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/fuji-nakahara/jekyll-e-book. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/fuji-nakahara/jekyll-build-ebook. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -53,4 +52,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the JekyllEBook project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/jekyll-e-book/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the JekyllEBook project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/fuji-nakahara/jekyll-build-ebook/blob/master/CODE_OF_CONDUCT.md).

@@ -1,16 +1,16 @@
 
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'jekyll-e-book/version'
+require 'jekyll-build-ebook/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'jekyll-e-book'
-  spec.version       = JekyllEBook::VERSION
+  spec.name          = 'jekyll-build-ebook'
+  spec.version       = JekyllBuildEbook::VERSION
   spec.authors       = ['Fuji Nakahara']
   spec.email         = ['fujinakahara2032@gmail.com']
 
-  spec.summary       = 'E-book generator for Jekyll'
-  spec.homepage      = 'https://github.com/fuji-nakahara/jekyll-e-book'
+  spec.summary       = 'Jekyll plugin that adds command to generate ebook'
+  spec.homepage      = 'https://github.com/fuji-nakahara/jekyll-build-ebook'
   spec.license       = 'MIT'
 
   # Specify which files should be added to the gem when it is released.

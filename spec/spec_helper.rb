@@ -1,5 +1,5 @@
 require 'bundler/setup'
-require 'jekyll-e-book'
+require 'jekyll-build-ebook'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -14,7 +14,6 @@ RSpec.configure do |config|
 
   SOURCE_DIR = File.expand_path('fixtures', __dir__)
   DEST_DIR   = File.expand_path('dest', __dir__)
-  EBOOK_DIR  = File.expand_path('ebook', __dir__)
 
   def source_dir(*files)
     File.join(SOURCE_DIR, *files)
@@ -22,9 +21,5 @@ RSpec.configure do |config|
 
   def dest_dir(*files)
     File.join(DEST_DIR, *files)
-  end
-
-  def ebook_dir(*files)
-    File.join(EBOOK_DIR, *files)
   end
 end

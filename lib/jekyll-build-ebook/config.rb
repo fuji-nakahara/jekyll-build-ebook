@@ -1,15 +1,15 @@
-require 'securerandom'
-
-module JekyllEBook
+module JekyllBuildEbook
   InvalidConfigError = Class.new(StandardError)
 
   class Config
+    DEFAULTS = {
+      'ebook' => {
+        'destination' => '_ebook',
+      },
+    }.freeze
+
     def initialize(config)
       @config = config
-    end
-
-    def skip_build?
-      ebook['build'] == 'false'
     end
 
     def layout
@@ -17,7 +17,7 @@ module JekyllEBook
     end
 
     def destination
-      File.expand_path(ebook['destination'] || '_ebook')
+      File.expand_path(ebook['destination'])
     end
 
     def file_name
@@ -37,7 +37,7 @@ module JekyllEBook
     end
 
     def date
-      ebook['date'] || Time.now
+      ebook['date']
     end
 
     def creator
@@ -64,7 +64,7 @@ module JekyllEBook
     end
 
     def ebook
-      @config['ebook'] || {}
+      @config['ebook']
     end
   end
 end
