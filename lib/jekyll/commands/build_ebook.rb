@@ -4,9 +4,19 @@ module Jekyll
       # Create the Mercenary command for the Jekyll CLI for this Command
       def self.init_with_program(prog)
         prog.command(:'build-ebook') do |c|
-          c.syntax 'build-ebook'
+          c.syntax 'build-ebook [options]'
           c.description 'Build your ebook'
           c.alias :be
+
+          c.option 'config', '--config CONFIG_FILE[,CONFIG_FILE2,...]', Array, 'Custom configuration file'
+          c.option 'destination', '-d', '--destination DESTINATION', 'The current folder will be generated into DESTINATION'
+          c.option 'source', '-s', '--source SOURCE', 'Custom source directory'
+          c.option 'future', '--future', 'Publishes posts with a future date'
+          c.option 'limit_posts', '--limit_posts MAX_POSTS', Integer, 'Limits the number of posts to parse and publish'
+          c.option 'show_drafts', '-D', '--drafts', 'Render posts in the _drafts folder'
+          c.option 'unpublished', '--unpublished', 'Render posts that were marked as unpublished'
+          c.option 'quiet', '-q', '--quiet', 'Silence output.'
+          c.option 'verbose', '-V', '--verbose', 'Print verbose output.'
 
           c.action do |_args, options|
             process(options)
