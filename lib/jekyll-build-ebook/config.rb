@@ -5,15 +5,12 @@ module JekyllBuildEbook
     DEFAULTS = {
       'ebook' => {
         'destination' => '_ebook',
+        'layout' => 'ebook',
       },
     }.freeze
 
     def initialize(config)
       @config = config
-    end
-
-    def layout
-      ebook['layout']
     end
 
     def destination

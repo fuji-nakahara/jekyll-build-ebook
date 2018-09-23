@@ -14,18 +14,23 @@ module Jekyll
         end
       end
 
-      # Build your jekyll ebook
-      def self.process(options, generator: JekyllBuildEbook::Generator.new)
+      def self.process(options)
         # Adjust verbosity quickly
         Jekyll.logger.adjust_verbosity(options)
 
-        options = Jekyll::Utils.deep_merge_hashes(JekyllBuildEbook::Config::DEFAULTS, options)
-        options = configuration_from_options(options)
-        site    = Jekyll::Site.new(options)
+        JekyllBuildEbook::Hooks.register
 
+        options = Jekyll::Utils.deep_merge_hashes(JekyllBuildEbook::Config::DEFAULTS, options)
+        config  = configuration_from_options(options)
+        site    = Jekyll::Site.new(config)
+
+        build(site, config)
+      end
+
+      def self.build(site, config, generator: JekyllBuildEbook::Generator.new)
         t           = Time.now
-        source      = options['source']
-        destination = options['ebook']['destination']
+        source      = config['source']
+        destination = config['ebook']['destination']
 
         Jekyll.logger.info 'Source:', source
         Jekyll.logger.info 'Destination:', destination

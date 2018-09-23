@@ -19,27 +19,17 @@ module JekyllBuildEbook
 
       book.ordered do
         site.posts.docs.each do |post|
-          output = render(site, post, layout: config.layout || site.layouts.key?('ebook') ? 'ebook' : 'none')
+          post.output = Jekyll::Renderer.new(site, post).run
 
           book
-            .add_item("#{post.cleaned_relative_path}.xhtml")
-            .add_content(StringIO.new(output))
+            .add_item(post.url)
+            .add_content(StringIO.new(Nokogiri::HTML(post.output).to_xhtml))
             .toc_text(post['title'])
         end
       end
 
       FileUtils.mkdir_p(config.destination)
       book.generate_epub(File.join(config.destination, config.file_name))
-    end
-
-    private
-
-    def render(site, post, layout:)
-      original_layout = post['layout']
-      post.merge_data!('layout' => layout)
-      output = Jekyll::Renderer.new(site, post).run
-      post.merge_data!('layout' => original_layout)
-      Nokogiri::HTML(output).to_xhtml
     end
   end
 end
