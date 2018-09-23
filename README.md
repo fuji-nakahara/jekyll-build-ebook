@@ -1,25 +1,24 @@
 # jekyll-build-ebook
 
-Jekyll plugin that adds a command to generate an ebook including your posts.
+Jekyll plugin that adds a subcommand to generate an ebook including your posts.
 
 ## Installation
 
 Add this line to your site's Gemfile:
 
 ```ruby
-gem 'jekyll-build-ebook'
+gem 'jekyll-build-ebook', group: :jekyll_plugins
 ```
 
-And then add the following to your site's `_config.yml`:
+And then execute:
 
-```yaml
-plugins:
-  - jekyll-build-ebook
-```
+    $ bundle
 
 ## Usage
 
-This plugin will automatically generate an EPUB file at `_ebook/YOUR_SITE_TITLE.epub`.
+You can generate an EPUB file at `_ebook/YOUR_SITE_TITLE.epub` by the following command:
+
+    $ bundle exec jekyll build-ebook
 
 You can also edit the build settings and the EPUB metadata in `_config.yml`:
 
@@ -29,6 +28,7 @@ ebook:
   layout: ebook
   destination: _ebook
   file_name: your-book-title
+  
   # EPUB metadata
   identifier: http://example.com
   title: Your book title
