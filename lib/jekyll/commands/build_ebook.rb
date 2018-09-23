@@ -6,6 +6,7 @@ module Jekyll
         prog.command(:'build-ebook') do |c|
           c.syntax 'build-ebook'
           c.description 'Build your ebook'
+          c.alias :be
 
           c.action do |_args, options|
             process(options)
