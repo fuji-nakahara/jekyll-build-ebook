@@ -18,6 +18,7 @@ module Jekyll
         # Adjust verbosity quickly
         Jekyll.logger.adjust_verbosity(options)
 
+        options = Jekyll::Utils.deep_merge_hashes(JekyllBuildEbook::Config::DEFAULTS, options)
         options = configuration_from_options(options)
         site    = Jekyll::Site.new(options)
 
@@ -34,11 +35,6 @@ module Jekyll
         generator.generate(site)
 
         Jekyll.logger.info '', "done in #{(Time.now - t).round(3)} seconds."
-      end
-
-      def self.configure_from_options(options)
-        return options if options.is_a?(Jekyll::Configuration)
-        Jekyll.configuration(JekyllBuildEbook::Config::DEFAULTS.merge(options))
       end
     end
   end
