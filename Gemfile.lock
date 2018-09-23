@@ -4,7 +4,7 @@ PATH
     jekyll-build-ebook (0.1.1)
       gepub (~> 0.7)
       jekyll (~> 3.5)
-      nokogiri (~> 1.0)
+      nokogiri (~> 1.8)
 
 GEM
   remote: https://rubygems.org/
