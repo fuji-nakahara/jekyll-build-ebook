@@ -3,13 +3,12 @@ module JekyllBuildEbook
     def generate(site, book: GEPUB::Book.new)
       config = Config.new(site.config)
 
-      book.date                       = site.time
-      book.identifier                 = config.identifier
-      book.title                      = config.title
-      book.language                   = config.language
-      book.creator                    = config.creator
-      book.date                       = config.date || site.time
-      book.page_progression_direction = config.page_progression_direction
+      book.date                       = config['date'] || site.time
+      book.identifier                 = config['identifier']
+      book.title                      = config['title']
+      book.language                   = config['language']
+      book.creator                    = config['creator']
+      book.page_progression_direction = config['page_progression_direction']
 
       site.static_files.each do |static_file|
         File.open(static_file.path) do |io|
@@ -28,8 +27,8 @@ module JekyllBuildEbook
         end
       end
 
-      FileUtils.mkdir_p(config.destination)
-      book.generate_epub(File.join(config.destination, config.file_name))
+      FileUtils.mkdir_p(config['destination'])
+      book.generate_epub("#{File.join(config['destination'], config['file_name'])}.epub")
     end
   end
 end

@@ -1,5 +1,7 @@
 require 'jekyll'
 
+require 'securerandom'
+
 require 'gepub'
 require 'nokogiri'
 

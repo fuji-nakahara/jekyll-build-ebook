@@ -4,64 +4,42 @@ module JekyllBuildEbook
   class Config
     DEFAULTS = {
       'ebook' => {
-        'destination' => '_ebook',
-        'layout' => 'ebook',
+        'destination' => File.join(Dir.pwd, '_ebook'),
+        'layout'      => 'ebook',
       },
     }.freeze
 
-    def initialize(config)
-      @config = config
-    end
+    REQUIRED_FIELDS = %w[identifier title language].freeze
 
-    def destination
-      File.expand_path(ebook['destination'])
-    end
+    attr_reader :data
 
-    def file_name
-      "#{ebook['file_name'] || title}.epub"
-    end
+    def initialize(site_config)
+      @data = {
+        'file_name'  => site_config['title'],
+        'identifier' => site_config['url'].nil? ? SecureRandom.uuid : "#{site_config['url']}#{site_config['base_url']}",
+        'title'      => site_config['title'],
+        'language'   => site_config['language'] || site_config['lang'],
+        'creator'    => case site_config['author']
+                        when String
+                          site_config['author']
+                        when Hash
+                          site_config['author']['name']
+                        else
+                          nil
+                        end,
+      }.merge(site_config['ebook'])
 
-    def identifier
-      ebook['identifier'] || site['url'].nil? ? nil : "#{site['url']}#{site['base_url']}" || SecureRandom.uuid
-    end
-
-    def title
-      ebook['title'] || site['title'] or raise InvalidConfigError, 'Title is required'
-    end
-
-    def language
-      ebook['language'] || site['language'] || site['lang'] or raise InvalidConfigError, 'Language is required'
-    end
-
-    def date
-      ebook['date']
-    end
-
-    def creator
-      case
-      when !ebook['creator'].nil?
-        ebook['creator']
-      when site['author'].is_a?(String)
-        site['author']
-      when site['author'].is_a?(Hash) && !site['author']['name'].nil?
-        site['author']['name']
-      else
-        nil
+      REQUIRED_FIELDS.each do |field|
+        raise InvalidConfigError, "#{field} is required" if data[field].nil?
       end
     end
 
-    def page_progression_direction
-      ebook['page_progression_direction']
+    def [](key)
+      data[key]
     end
 
-    private
-
-    def site
-      @config
-    end
-
-    def ebook
-      @config['ebook']
+    def file_path
+      "#{File.join(data['destination'], data['file_name'])}.epub"
     end
   end
 end
