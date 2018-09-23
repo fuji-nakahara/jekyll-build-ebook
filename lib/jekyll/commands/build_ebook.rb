@@ -19,6 +19,7 @@ module Jekyll
         Jekyll.logger.adjust_verbosity(options)
 
         JekyllBuildEbook::Hooks.register
+        JekyllBuildEbook::Filters.register
 
         options = Jekyll::Utils.deep_merge_hashes(JekyllBuildEbook::Config::DEFAULTS, options)
         config  = configuration_from_options(options)
