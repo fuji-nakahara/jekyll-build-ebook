@@ -1,6 +1,8 @@
 module Jekyll
   module Commands
     class BuildEbook < Command
+      EBOOK_OPTIONS = %w[destination file_name kindle].freeze
+
       # Create the Mercenary command for the Jekyll CLI for this Command
       def self.init_with_program(prog)
         prog.command(:'build-ebook') do |c|
@@ -9,7 +11,6 @@ module Jekyll
           c.alias :be
 
           c.option 'config', '--config CONFIG_FILE[,CONFIG_FILE2,...]', Array, 'Custom configuration file'
-          c.option 'destination', '-d', '--destination DESTINATION', 'The current folder will be generated into DESTINATION'
           c.option 'source', '-s', '--source SOURCE', 'Custom source directory'
           c.option 'future', '--future', 'Publishes posts with a future date'
           c.option 'limit_posts', '--limit_posts MAX_POSTS', Integer, 'Limits the number of posts to parse and publish'
@@ -18,7 +19,16 @@ module Jekyll
           c.option 'quiet', '-q', '--quiet', 'Silence output.'
           c.option 'verbose', '-V', '--verbose', 'Print verbose output.'
 
+          c.option 'destination', '-d', '--destination DESTINATION', 'The current folder will be generated into DESTINATION'
+          c.option 'file_name', '--file_name FILE_NAME', 'Generate the ebook as FILE_NAME.epub'
+          c.option 'kindle', '--kindle', 'Also generate .mobi file'
+
           c.action do |_args, options|
+            options['ebook'] = {}
+            EBOOK_OPTIONS.each do |key|
+              options['ebook'][key] = options[key] unless options[key].nil?
+            end
+
             process(options)
           end
         end
