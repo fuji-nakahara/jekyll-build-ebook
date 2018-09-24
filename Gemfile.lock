@@ -4,6 +4,7 @@ PATH
     jekyll-build-ebook (0.2.0)
       gepub (~> 0.7)
       jekyll (~> 3.5)
+      kindlegen (~> 3.0)
       nokogiri (~> 1.8)
 
 GEM
@@ -45,6 +46,9 @@ GEM
       sass (~> 3.4)
     jekyll-watch (2.0.0)
       listen (~> 3.0)
+    kindlegen (3.0.3)
+      rake
+      rubyzip
     kramdown (1.17.0)
     liquid (4.0.0)
     listen (3.1.5)

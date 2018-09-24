@@ -3,6 +3,7 @@ require 'jekyll'
 require 'securerandom'
 
 require 'gepub'
+require 'kindlegen'
 require 'nokogiri'
 
 require_relative 'jekyll/commands/build_ebook'

@@ -1,8 +1,17 @@
 module JekyllBuildEbook
   class Generator
-    def generate(site, book: GEPUB::Book.new)
+    def generate(site)
       config = Config.new(site.config)
 
+      FileUtils.mkdir_p(config['destination'])
+
+      generate_epub(site, config)
+      generate_kindle(config) if config['kindle']
+    end
+
+    private
+
+    def generate_epub(site, config, book: GEPUB::Book.new)
       book.date                       = config['date'] || site.time
       book.identifier                 = config['identifier']
       book.title                      = config['title']
@@ -12,7 +21,7 @@ module JekyllBuildEbook
 
       site.static_files.each do |static_file|
         File.open(static_file.path) do |io|
-          book.add_item(File.join(static_file.destination_rel_dir, static_file.name), io)
+          book.add_item(File.join(static_file.destination_rel_dir, static_file.name)[1..-1], io)
         end
       end
 
@@ -21,14 +30,20 @@ module JekyllBuildEbook
           post.output = Jekyll::Renderer.new(site, post).run
 
           book
-            .add_item(post.url)
+            .add_item(post.url[1..-1])
             .add_content(StringIO.new(Nokogiri::HTML(post.output).to_xhtml))
             .toc_text(post['title'])
         end
       end
 
-      FileUtils.mkdir_p(config['destination'])
-      book.generate_epub("#{File.join(config['destination'], config['file_name'])}.epub")
+      book.generate_epub(config.destination_path)
+    end
+
+    def generate_kindle(config, logger: Jekyll.logger)
+      stdout, stderr, _status = Kindlegen.run(config.destination_path, '-o', "#{config['file_name']}.mobi")
+
+      logger.debug('Kindlegen:', stdout) unless stdout.empty?
+      logger.error('Kindlegen:', stderr) unless stderr.empty?
     end
   end
 end

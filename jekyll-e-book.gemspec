@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'jekyll', '~> 3.5'
 
   spec.add_dependency 'gepub', '~> 0.7'
+  spec.add_dependency 'kindlegen', '~> 3.0'
   spec.add_dependency 'nokogiri', '~> 1.8'
 
   spec.add_development_dependency 'bundler', '~> 1.16'

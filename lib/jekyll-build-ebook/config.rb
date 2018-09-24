@@ -38,8 +38,8 @@ module JekyllBuildEbook
       data[key]
     end
 
-    def file_path
-      "#{File.join(data['destination'], data['file_name'])}.epub"
+    def destination_path(ext: 'epub')
+      "#{File.join(data['destination'], data['file_name'])}.#{ext}"
     end
   end
 end
