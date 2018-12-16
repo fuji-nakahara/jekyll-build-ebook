@@ -21,7 +21,7 @@ module JekyllBuildEbook
 
       site.static_files.each do |static_file|
         File.open(static_file.path) do |io|
-          book.add_item(File.join(static_file.destination_rel_dir, static_file.name)[1..-1], io)
+          book.add_item(File.join(static_file.destination_rel_dir, static_file.name)[1..-1], content: io)
         end
       end
 
