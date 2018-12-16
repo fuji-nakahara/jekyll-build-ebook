@@ -1,6 +1,4 @@
 module JekyllBuildEbook
-  InvalidConfigError = Class.new(StandardError)
-
   class Config
     DEFAULTS = {
       'ebook' => {
