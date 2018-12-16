@@ -2,6 +2,8 @@
 
 Jekyll plugin that adds a subcommand to generate an ebook including your posts.
 
+This gem is built on [gepub](https://github.com/skoji/gepub).
+
 ## Installation
 
 Add this line to your site's Gemfile:
