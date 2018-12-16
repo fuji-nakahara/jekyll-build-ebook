@@ -20,8 +20,9 @@ module JekyllBuildEbook
       book.page_progression_direction = config['page_progression_direction']
 
       site.static_files.each do |static_file|
+        href = remove_head_slash(File.join(static_file.destination_rel_dir, static_file.name))
         File.open(static_file.path) do |io|
-          book.add_item(File.join(static_file.destination_rel_dir, static_file.name)[1..-1], content: io)
+          book.add_item(href, content: io)
         end
       end
 
@@ -30,7 +31,7 @@ module JekyllBuildEbook
           post.output = Jekyll::Renderer.new(site, post).run
 
           book
-            .add_item(post.url[1..-1])
+            .add_item(remove_head_slash(post.url))
             .add_content(StringIO.new(Nokogiri::HTML(post.output).to_xhtml))
             .toc_text(post['title'])
         end
@@ -44,6 +45,10 @@ module JekyllBuildEbook
 
       logger.debug('Kindlegen:', stdout) unless stdout.empty?
       logger.error('Kindlegen:', stderr) unless stderr.empty?
+    end
+
+    def remove_head_slash(str)
+      str.sub(%r{\A/}, '')
     end
   end
 end
