@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'jekyll', '~> 3.5'
+  spec.add_dependency 'jekyll', '>= 3.5', '< 5.0'
 
   spec.add_dependency 'gepub', '~> 1.0'
   spec.add_dependency 'kindlegen', '~> 3.0'
